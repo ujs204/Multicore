@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
-#include <time.h> 
+#include <time.h>
 #define TOTAL_CHARS 4
 
 
@@ -104,18 +104,10 @@ int main(int argc, char *argv[]){
 
     if(THREADS == 4){
         int remainder = count % 4;
-        int step;
+        int step = (count / THREADS) + (remainder != 0);
+        int hist[TOTAL_CHARS] = {0,0,0,0};
 
-        if (count < 4){
-            step = 1;
-        }
-        else{
-            step = count/4;
-        }
-
-        int hist[TOTAL_CHARS] = {0};
-
-        #pragma omp parallel shared(count)
+        #pragma omp parallel shared(hist)
         {
             int id = omp_get_thread_num();
             int start = step * id;
@@ -140,7 +132,7 @@ int main(int argc, char *argv[]){
                 }
             }
             
-            printf("%d", step);
+            //printf("%d", step);
         }
 
         printf("a frequency %d \n",hist['a'-97]);
