@@ -8,9 +8,11 @@
 
 
 
-//gcc -fopenmp -Wall -std=c99 -o maxnum maxnum.c
-//./maxnum 4 3 filename.txt
+//gcc -fopenmp -Wall -std=c99 -o maxnum ujs204-code.c
+//./maxnum 4 1000 filename.txt
+//time ./maxnum 4 1000 filename.txt
 //ssh crunchy1.cims.nyu.edu
+//module load gcc-9.2
 
 
 
